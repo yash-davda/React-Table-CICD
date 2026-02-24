@@ -6,6 +6,7 @@ import useDebounce from './hooks/useDebounce';
 import axios from "axios";
 import Paginations from "./components/Paginations.jsx"
 function App() {
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const { page, limit, setPage } = Pagination();
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
@@ -18,10 +19,10 @@ function App() {
   }, [page, debouncedSearch]);
   const fetchData = async () => {
     setLoading(true);
-    const res = await axios.get("http://localhost:3000/api/comments/", {
+    const res = await axios.get(`${baseUrl}/comments`, {
       params: { page, limit, search: debouncedSearch }
     });
-    setData(res.data.data);
+    setData(res.data?.data || []);
     setTotalPage(res.data.totalPages);
     setLoading(false);
   }
