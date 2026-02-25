@@ -13,7 +13,10 @@ function App() {
   const [totalPages, setTotalPage] = useState(0);
   const [data, setData] = useState([]);
   const debouncedSearch = useDebounce(search, 500);
-
+  const paginationCss = {
+    display: "flex",
+    justifyContent: "end"
+  }
   useEffect(() => {
     fetchData();
   }, [page, debouncedSearch]);
@@ -57,7 +60,7 @@ function App() {
           </tbody>
         </table>
       )}
-      <div>
+      <div style={paginationCss}>
         {/* {[...Array(totalPages)].map((_, i) => (
           <button
             key={i}
