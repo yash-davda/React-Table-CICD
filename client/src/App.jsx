@@ -18,7 +18,8 @@ function App() {
     justifyContent: "end"
   }
   const mb = {
-    marginBottom:"10px"
+    marginBottom:"10px",
+    padding:"10px"
   }
   useEffect(() => {
     fetchData();
@@ -36,9 +37,11 @@ function App() {
 
   return (
     <div>
-      <h3>Comment Table</h3>
+      <h2>Comment Table</h2>
+      <div style={paginationCss}>
+        <input style={mb} placeholder='Search from email or name'  type='text' value={search} onChange={(e) => setSearch(e.target.value)} />
+      </div>
 
-      <input style={mb} placeholder='Search from email or name'  type='text' value={search} onChange={(e) => setSearch(e.target.value)} />
       {loading && <p>Loading...</p>}
       {!loading && memoizedData.length === 0 && <p>No Data Found!</p>}
       {!loading && memoizedData.length > 0 && (
