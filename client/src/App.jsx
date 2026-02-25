@@ -17,6 +17,9 @@ function App() {
     display: "flex",
     justifyContent: "end"
   }
+  const mb = {
+    marginBottom:"10px"
+  }
   useEffect(() => {
     fetchData();
   }, [page, debouncedSearch]);
@@ -35,7 +38,7 @@ function App() {
     <div>
       <h3>Comment Table</h3>
 
-      <input type='text' value={search} onChange={(e) => setSearch(e.target.value)} />
+      <input style={mb} placeholder='Search from email or name'  type='text' value={search} onChange={(e) => setSearch(e.target.value)} />
       {loading && <p>Loading...</p>}
       {!loading && memoizedData.length === 0 && <p>No Data Found!</p>}
       {!loading && memoizedData.length > 0 && (
